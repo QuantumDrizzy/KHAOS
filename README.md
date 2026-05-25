@@ -34,3 +34,10 @@ cd KHAOS
 python3 scripts/gen_coefficients.py
 cmake -B build -DCMAKE_BUILD_TYPE=Release -DETHICS_COMPLIANT=ON
 cmake --build build --parallel
+
+Run
+Bash# Synthetic mode (no hardware required)
+./build/khaos_mirror --dry-run
+
+# Live with Muse 2
+./build/khaos_mirror --stream "EEG"

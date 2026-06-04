@@ -1,4 +1,4 @@
-# KHAOS-CORE
+# KHAOS
 
 **Closed-loop BCI kernel with sub-100µs end-to-end latency at 1000 Hz.**
 
@@ -12,7 +12,7 @@ High-performance CUDA DSP pipeline with compiler-enforced safety and post-quantu
 - Post-quantum cryptography (CRYSTALS-Kyber-1024)
 
 ### What it does
-KHAOS-CORE is a real-time closed-loop BCI kernel designed with sovereignty and safety as hard architectural constraints. It processes EEG signals through a CUDA-accelerated DSP pipeline and extracts a compact quantum-inspired feature representation while enforcing strict safety limits at multiple layers.
+KHAOS is a real-time closed-loop BCI kernel designed with sovereignty and safety as hard architectural constraints. It processes EEG signals through a CUDA-accelerated DSP pipeline and extracts a compact quantum-inspired feature representation while enforcing strict safety limits at multiple layers.
 
 ### Stack
 - **Languages**: C++17, CUDA, Python

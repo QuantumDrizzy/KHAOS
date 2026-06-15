@@ -1,11 +1,12 @@
 # KHAOS
 
-**Closed-loop BCI kernel with sub-100µs end-to-end latency at 1000 Hz.**
+**Closed-loop BCI kernel: a CUDA DSP hot-path built for sub-millisecond EEG filtering, with compiler-enforced safety and post-quantum cryptography.**
 
 High-performance CUDA DSP pipeline with compiler-enforced safety and post-quantum cryptography.
 
 ### Key Results
-- End-to-end latency **< 100µs** at 1000 Hz on 64-channel EEG
+- **CUDA DSP hot-path** designed for **< 100 µs/frame** at 1000 Hz, 64-channel (per-stage estimates in code: ~3 µs host→kernel, ~5 µs D2H). **Design target — not yet benchmarked end-to-end** (`tests/bench/` harness pending the GPU build). Distrust this number until it is measured.
+- The **feature-extraction + quantum-mirror stage runs asynchronously**, off the hot path (~9 ms at 4-ch, ~16 ms at 64-ch in Python — measured, `tests/bench/bench_feature_extraction.py`). It is *not* part of the sub-100 µs path.
 - Electrode-density-invariant **output contract**: 4/16/32/64-channel EEG all map to the same 12-qubit / 240-element interface (shape `(240,)`, values in `[0, 2π]`), so the quantum layer is channel-count-agnostic. The feature *values* differ by montage (4-ch uses per-electrode biomarkers; >4-ch uses PCA spatial components) — it's the contract that's invariant, not the vector. (`tests/unit/test_density_invariance.py`)
 - Three independent safety layers: Python runtime, C++17 `static_assert`, and FPGA hardware watchdog (5 ms)
 - SHA-256 chained forensic audit ledger on every state transition

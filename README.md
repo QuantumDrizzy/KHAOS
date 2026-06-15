@@ -6,7 +6,7 @@ High-performance CUDA DSP pipeline with compiler-enforced safety and post-quantu
 
 ### Key Results
 - End-to-end latency **< 100µs** at 1000 Hz on 64-channel EEG
-- Electrode-density-invariant 12-qubit quantum representation (4 or 64 channels → identical 240-element feature vector)
+- Electrode-density-invariant **output contract**: 4/16/32/64-channel EEG all map to the same 12-qubit / 240-element interface (shape `(240,)`, values in `[0, 2π]`), so the quantum layer is channel-count-agnostic. The feature *values* differ by montage (4-ch uses per-electrode biomarkers; >4-ch uses PCA spatial components) — it's the contract that's invariant, not the vector. (`tests/unit/test_density_invariance.py`)
 - Three independent safety layers: Python runtime, C++17 `static_assert`, and FPGA hardware watchdog (5 ms)
 - SHA-256 chained forensic audit ledger on every state transition
 - Post-quantum cryptography (CRYSTALS-Kyber-1024)

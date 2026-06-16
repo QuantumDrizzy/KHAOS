@@ -25,7 +25,7 @@ Nos reímos de los presupuestos multimillonarios. Mientras las corporaciones que
 
 ---
 
-## 💎 EL ESTADO DEL ARTE (v1.0 - "Theia")
+## 💎 EL ESTADO DEL ARTE (v1.0)
 
 - **BCI Bridge:** Telemetría táctil, auditiva y mecánica integrada.
 - **Quantum Sovereignty:** Monitor de fidelidad cuántica que actúa como un *kill-switch* instantáneo.

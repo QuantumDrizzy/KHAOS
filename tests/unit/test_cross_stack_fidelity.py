@@ -298,10 +298,8 @@ class TestCrossStackFidelity(unittest.TestCase):
         t1  = ext.extract(alpha_base, theta_base)
         t2  = ext.extract(alpha_2x,   theta_base)
 
-        # q[0..3] should differ; q[4..7] should be stable
+        # Doubling alpha must move the alpha qubits measurably.
         alpha_qubits_diff = np.abs(t1[:4] - t2[:4]).mean()
-        theta_qubits_diff = np.abs(t1[4*12:(4+4)*12 // 12] -
-                                    t2[4*12:(4+4)*12 // 12]).mean()
         self.assertGreater(alpha_qubits_diff, 0.01,
                            "Alpha qubits not sensitive to 2× amplitude change")
 

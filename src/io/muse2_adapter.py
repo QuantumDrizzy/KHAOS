@@ -99,19 +99,19 @@ class OutputResampler:
 
     Group delay analysis
     ────────────────────
-    resample_poly half-length = 10 * max(up, down).
+    resample_poly designs a FIR of half-length 10 * max(up, down) taps in the
+    UP-sampled domain. Group delay = half_len / fs_upsampled.
     At output_hz=1000 Hz with up=125, down=32:
-      half_len = 10 * 125 = 1250 taps
-      group delay ≈ 1250 / 1000 Hz = 1.25 ms  ← well under 2 ms limit
+      half_len    = 10 * 125 = 1250 taps  (in the 256*125 = 32 kHz up-sampled domain)
+      group delay ≈ 1250 / 32000 Hz ≈ 39 ms   (matches the group_delay_ms property)
 
     At output_hz=256 Hz (identity, no resampling):
       group delay = 0 (pass-through)
 
-    Note: this resampler is NOT in the hard real-time path (<250 µs).
-    It is used for bridge → C++ kernel pre-processing and for multi-rate
-    feature extraction.  The constraint of <2 ms group delay ensures that
-    the Python-side theta vector remains temporally aligned with the C++
-    pipeline within one feature extraction window (~2 s).
+    Note: this resampler is NOT in the hard real-time path (the C++/CUDA kernel
+    is). It runs in the ASYNC bridge path, where ~40 ms latency is fine — far
+    below the ~2 s feature-extraction window. (An earlier docstring said 1.25 ms;
+    that divided by the output rate instead of the up-sampled rate — corrected.)
     """
 
     # Maximum GCD search — avoids huge up/down ratios for close rates

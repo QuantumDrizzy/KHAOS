@@ -14,7 +14,7 @@
  * Dispatch:    CUDA Graph captures IIR + metrics.  Launch overhead ≈ 1 µs.
  *              DWT kernels (dwt.cu) launched on the same stream after the graph.
  *
- * sm_89 tuning (RTX 5060 Ti):
+ * sm_120 tuning (RTX 5060 Ti / Blackwell):
  *   __launch_bounds__(32,4) on IIR kernel  → ≥4 blocks/SM, ~50% occupancy
  *   __launch_bounds__(64,2) on metrics     → 2 blocks/SM, shared-mem bound
  *   --maxrregcount=64 (CMakeLists.txt)     → no RF spills, max occupancy
@@ -358,7 +358,8 @@ private:
  * broadcast (1 transaction for the whole warp, 0 L2 traffic after warmup).
  *
  * With --maxrregcount=64 and #pragma unroll 8 all delay registers stay in RF.
- * Measured throughput: ~0.04 ms for 64 channels × 8 sections on sm_89.
+ * Estimated throughput: ~0.04 ms for 64 channels × 8 sections on sm_120
+ * (design estimate; end-to-end latency is unbenchmarked — see README).
  */
 __global__
 __launch_bounds__(32, 4)

@@ -1,0 +1,5 @@
+# Language stats should reflect the real implementation (CUDA/C++17/Python/C).
+dashboard/** linguist-vendored
+CMakeLists.txt linguist-vendored
+*.cmake        linguist-vendored
+*.sh           linguist-vendored

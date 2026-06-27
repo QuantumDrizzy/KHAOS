@@ -80,3 +80,6 @@ WYSS_SUBMISSION_KHAOS/
 
 # Working copy of paper (canonical: docs/*.pdf)
 KHAOS_CORE_Technical_Paper.docx
+
+# Private — inspiration/manifesto, not for the public face (kept in history)
+MANIFESTO.md

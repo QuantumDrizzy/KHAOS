@@ -35,10 +35,21 @@ cd KHAOS
 python3 scripts/gen_coefficients.py
 cmake -B build -DCMAKE_BUILD_TYPE=Release -DETHICS_COMPLIANT=ON
 cmake --build build --parallel
+```
 
-Run
-Bash# Synthetic mode (no hardware required)
+### Run
+```bash
+# Synthetic mode (no hardware required)
 ./build/khaos_mirror --dry-run
 
-# Live with Muse 2
+# Live with a Muse 2 headset
 ./build/khaos_mirror --stream "EEG"
+```
+
+### Documentation
+- [ETHICS.md](ETHICS.md) — the safety and ethics contract this kernel is built to honour.
+- [INTEGRATION_REPORT.md](INTEGRATION_REPORT.md) — end-to-end integration status and measured timings.
+
+## License
+
+MIT © QuantumDrizzy — see [LICENSE](LICENSE).
